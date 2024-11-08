@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-</head>
+<head th:replace="~{fragments :: head}"></head>
 <body>
 
 <div th:replace="~{fragments :: page-header}"></div>
 
 <div class="container body-content">
-
   <h1 th:text="${title}">Job Listings</h1>
 
-  <!-- Loop to display job results -->
-  <div th:each="job : ${jobs}">
+  <!-- Fragment for displaying job information -->
+  <div th:fragment="jobTable(job)">
     <table class="job-listing">
       <tr>
         <th>ID:</th>
@@ -38,6 +36,11 @@
         <td th:text="${job.coreCompetency.getValue()}"></td>
       </tr>
     </table>
+  </div>
+
+  <!-- Loop to display each job in a table -->
+  <div th:each="job : ${jobs}">
+    <div th:include="list-jobs :: jobTable(job)"></div>
   </div>
 
 </div>
