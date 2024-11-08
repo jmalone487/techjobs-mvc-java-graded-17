@@ -8,20 +8,24 @@
 
 <div class="container body-content">
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-  <h2 class = "centered">View Jobs By Category</h2>
+  <h2 class="centered">View Jobs By Category</h2>
 </div>
 
 <table class="centeredTable">
   <tr>
+    <!-- "All" column header with link to view all jobs -->
+    <th><a th:href="@{/list/jobs(column='all',value='all')}">All</a></th>
+
+    <!-- Other category headers -->
     <th:block th:each="column : ${columns}">
-      <th th:text = "${column.value}"></th>
+      <th th:text="${column.value}"></th>
     </th:block>
   </tr>
   <tr>
-    <!-- TODO #2: Complete the View Jobs By Category Table. -->
+    <!-- Loop through each category to display jobs by type -->
+    <td></td> <!-- Blank cell under "All" header for alignment -->
 
-    <td></td> <!-- Feel free to remove or modify this element if necessary. -->
-
+    <!-- Loop through each category in tableChoices -->
     <td th:each="category : ${tableChoices}">
       <ul>
         <li th:each="item : ${category.value}">
